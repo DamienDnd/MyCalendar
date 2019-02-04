@@ -4,12 +4,14 @@ import dateFns from 'date-fns';
 import frDate from 'date-fns/locale/fr';
 import Cells from './Cells';
 
+const formatWeek = "WW";
+
 export default class Calendar extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            currentWeek: new Date()
+            currentWeek: new Date(2013,8,2)
         };
         this.renderHeader = this.renderHeader.bind(this);
         this.renderWeek = this.renderWeek.bind(this);
@@ -128,7 +130,7 @@ export default class Calendar extends Component {
           <div className="calendar">
             {this.renderHeader()}
             {this.renderWeek()}
-            <Cells></Cells>
+            <Cells week={dateFns.format(this.state.currentWeek, formatWeek)} year={this.state.currentWeek.getFullYear()} ></Cells>
           </div>
       )
     }

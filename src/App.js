@@ -6,14 +6,14 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header>
+{/*         <header>
           <div id="logo">
             <span className="icon">date_range</span>
             <span>
               My React <b>Calendar</b>
             </span>
           </div>
-        </header>
+        </header> */}
         <div className="main">
           <Calendar></Calendar>
         </div>
