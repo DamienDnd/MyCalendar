@@ -1,0 +1,20 @@
+[
+	{"date":"2013-9-2","groupes":["M1"],"heure":"1630","profs":[{"NOM":"FISSON","PRENOM":"SYLVAIN"}],"idWeek":"36-2013-mo","duree":"130","salles":["IB119","IB117"],"id":"76d05671-471c-42ee-a39d-3a892c8f9e1c","matiere":"_M1TC7.13 MASTRIALES TD","type_activite":"TD"},
+
+	{"date":"2013-9-2","groupes":["M1"],"heure":"830","idWeek":"36-2013-mo","duree":"130","salles":["IBGRANDAMPHI"],"id":"2c964507-db09-4f8c-9a03-78d2a3014014","matiere":"_PRE-RENTREE","type_activite":"CM"},
+
+	{"date":"2013-9-3","groupes":["M1"],"heure":"1300","profs":[{"NOM":"FISSON","PRENOM":"SYLVAIN"}],"idWeek":"36-2013-tu","duree":"130","salles":["IB119","IB117"],"id":"04ec3867-e7a7-418e-8c93-2d60be27e9bd","matiere":"_M1TC7.13 MASTRIALES TD","type_activite":"TD"},
+
+	{"date":"2013-9-3","groupes":["M1"],"heure":"830","profs":[{"NOM":"FISSON","PRENOM":"SYLVAIN"}],"idWeek":"36-2013-tu","duree":"130","salles":["IB119","IB117"],"id":"aa1d219b-cdde-42d0-82e9-9b58a8a13b01","matiere":"_M1TC7.13 MASTRIALES TD","type_activite":"TD"},
+
+	{"date":"2013-9-3","groupes":["M1"],"heure":"1445","profs":[{"NOM":"FISSON","PRENOM":"SYLVAIN"}],"idWeek":"36-2013-tu","duree":"130","salles":["IB119","IB117"],"id":"3c0569d4-d877-4dd5-b651-227735243ef5","matiere":"_M1TC7.13 MASTRIALES TD","type_activite":"TD"},
+
+	{"date":"2013-9-3","groupes":["M1"],"heure":"1015","profs":[{"NOM":"FISSON","PRENOM":"SYLVAIN"}],"idWeek":"36-2013-tu","duree":"130","salles":["IB119","IB117"],"id":"01bc7731-7ad1-4189-be24-d30946f7030c","matiere":"_M1TC7.13 MASTRIALES TD","type_activite":"TD"},
+
+	{"date":"2013-9-2","groupes":["M1"],"heure":"1015","profs":[{"NOM":"FISSON","PRENOM":"SYLVAIN"}],"idWeek":"36-2013-mo","duree":"130","salles":["IB119","IB117"],"id":"b73148ae-14c8-467f-b82d-1e1e2ffda590","matiere":"_M1TC7.13 MASTRIALES TD","type_activite":"TD"},
+
+	{"date":"2013-9-2","groupes":["M1"],"heure":"1445","profs":[{"NOM":"FISSON","PRENOM":"SYLVAIN"}],"idWeek":"36-2013-mo","duree":"130","salles":["IB119","IB117"],"id":"65880c6c-1db3-4e4f-8e11-8d787b68b369","matiere":"_M1TC7.13 MASTRIALES TD","type_activite":"TD"},
+
+	{"date":"2013-9-2","groupes":["M1"],"heure":"1300","profs":[{"NOM":"FISSON","PRENOM":"SYLVAIN"}],"idWeek":"36-2013-mo","duree":"130","salles":["IB119","IB117"],"id":"b4f5cf82-6b92-4cc3-99bb-3fcc75ba3e54","matiere":"_M1TC7.13 MASTRIALES TD","type_activite":"TD"}
+
+]

@@ -1,0 +1,32 @@
+.calendar__appointment__name {
+    font-weight: bold;
+}
+
+.calendar__appointment {
+    background: #f1d8f6;
+    color: rgb(209, 49, 201);
+    border: #f6d8f1 solid 1px;
+    border-left: #d840c4 solid 2px;
+    padding: 4px 6px;
+    font-size: 12px;
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    left: 0;
+    z-index: 1;
+    min-height: 100%;
+}
+
+.TD {
+    background: #f6f3d8;
+    color: rgb(209, 153, 49);
+    border: #f6f6d8 solid 1px;
+    border-left: #d8a840 solid 2px;
+}
+
+.CM {
+    background: #e0f6d8;
+    color: #0c881d;
+    border: #e0f6d8 solid 1px;
+    border-left: #76db56 solid 2px;
+}
