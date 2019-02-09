@@ -75,7 +75,7 @@ export default class Cells extends Component {
           while (timeString !== endTime) {
             blockSpan++;
             min += blockTime;
-    
+            
             if (min >= 60) {
               min = 0;
               hour += 1;

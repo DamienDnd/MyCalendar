@@ -1,5 +1,11 @@
-.calendar__appointment__name {
+.calendar__appointment__matiere {
     font-weight: bold;
+    font-size: 10px;
+}
+
+.calendar__appointment__prof {
+    font-style: italic;
+    font-size: 12px;
 }
 
 .calendar__appointment {
@@ -7,8 +13,8 @@
     color: rgb(209, 49, 201);
     border: #f6d8f1 solid 1px;
     border-left: #d840c4 solid 2px;
-    padding: 4px 6px;
-    font-size: 12px;
+    padding: 2px 3px;
+    font-size: 11px;
     position: absolute;
     top: -1px;
     right: -1px;
@@ -16,6 +22,7 @@
     z-index: 1;
     min-height: 100%;
     overflow: hidden;
+    text-align: center;
 }
 
 .TD {
@@ -32,4 +39,17 @@
     border: #e0f6d8 solid 1px;
     border-left: #76db56 solid 2px;
     overflow: hidden;
+}
+
+.DS {
+    background: #f6d8d8;
+    color: #880c0c;
+    border: #f6d8d8 solid 1px;
+    border-left: #db5656 solid 2px;
+    overflow: hidden;
+}
+
+.popover-header {
+    border: none !important;
+
 }
