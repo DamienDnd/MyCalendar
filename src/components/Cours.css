@@ -15,6 +15,7 @@
     left: 0;
     z-index: 1;
     min-height: 100%;
+    overflow: hidden;
 }
 
 .TD {
@@ -22,6 +23,7 @@
     color: rgb(209, 153, 49);
     border: #f6f6d8 solid 1px;
     border-left: #d8a840 solid 2px;
+    overflow: hidden;
 }
 
 .CM {
@@ -29,4 +31,5 @@
     color: #0c881d;
     border: #e0f6d8 solid 1px;
     border-left: #76db56 solid 2px;
+    overflow: hidden;
 }

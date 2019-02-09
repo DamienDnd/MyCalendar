@@ -11,7 +11,8 @@ export default class Calendar extends Component {
         super(props);
 
         this.state = {
-            currentWeek: new Date(2013,8,2)
+            currentWeek: new Date(2013,8,2),
+            week: []
         };
         this.renderHeader = this.renderHeader.bind(this);
         this.renderWeek = this.renderWeek.bind(this);
@@ -19,18 +20,21 @@ export default class Calendar extends Component {
         this.prevWeek = this.prevWeek.bind(this);
         this.nextMonth = this.nextMonth.bind(this);
         this.prevMonth = this.prevMonth.bind(this);
+        fetch(`/login/M1/idWeek/${dateFns.format(this.state.currentWeek, "WW")}-${dateFns.format(this.state.currentWeek, "YYYY")}`)
+          .then(res => res.json())
+          .then(data => this.setState({week : data.Items}))
+          .catch(error => console.log(error));
     }
 
     // Le header contient le numéro de la semaine,
     // le jour de début et de fin de la semaine
     renderHeader() {
         // Format pour afficher le numéro de la semaine et l'année
-        const dateFormat = "W YYYY";
+        const dateFormat = "WW YYYY";
         const dateFormat2 = "DD";
         // on démarre à Monday et on termine à Sunday
         let startWeek = dateFns.startOfWeek(this.state.currentWeek, {weekStartsOn:1});
         let endWeek = dateFns.endOfWeek(this.state.currentWeek);
-
         return (
           <div className="header row flex-middle">
             <div className="col col-start">
@@ -56,27 +60,31 @@ export default class Calendar extends Component {
       }
       // Fonction pour passer à la semaine suivante
       nextWeek = () => {
-          this.setState({
-            currentWeek: dateFns.addWeeks(this.state.currentWeek, 1)
-          });
+        fetch(`/login/M1/idWeek/${dateFns.format(dateFns.addWeeks(this.state.currentWeek, 1), "WW")}-${dateFns.format(dateFns.addWeeks(this.state.currentWeek, 1), "YYYY")}`)
+          .then(res => res.json())
+          .then(data => this.setState({week : data.Items, currentWeek: dateFns.addWeeks(this.state.currentWeek, 1)}))
+          .catch(error => console.log(error));
       };
       // Fonction pour passer à la semaine précédente
       prevWeek = () => {
-          this.setState({
-            currentWeek: dateFns.subWeeks(this.state.currentWeek, 1)
-          });
+        fetch(`/login/M1/idWeek/${dateFns.format(dateFns.subWeeks(this.state.currentWeek, 1), "WW")}-${dateFns.format(dateFns.subWeeks(this.state.currentWeek, 1), "YYYY")}`)
+        .then(res => res.json())
+        .then(data => this.setState({week : data.Items, currentWeek: dateFns.subWeeks(this.state.currentWeek, 1)}))
+        .catch(error => console.log(error));
       };
       // Fonction pour passer au mois suivant
       nextMonth = () => {
-        this.setState({
-          currentWeek: dateFns.addMonths(this.state.currentWeek, 1)
-        });
+        fetch(`/login/M1/idWeek/${dateFns.format(dateFns.addMonths(this.state.currentWeek, 1), "WW")}-${dateFns.format(dateFns.addMonths(this.state.currentWeek, 1), "YYYY")}`)
+          .then(res => res.json())
+          .then(data => this.setState({week : data.Items, currentWeek: dateFns.addMonths(this.state.currentWeek, 1)}))
+          .catch(error => console.log(error));
     };
     // Fonction pour passer au mois précédent
     prevMonth = () => {
-        this.setState({
-          currentWeek: dateFns.subMonths(this.state.currentWeek, 1)
-        });
+      fetch(`/login/M1/idWeek/${dateFns.format(dateFns.subMonths(this.state.currentWeek, 1), "WW")}-${dateFns.format(dateFns.subMonths(this.state.currentWeek, 1), "YYYY")}`)
+      .then(res => res.json())
+      .then(data => this.setState({week : data.Items, currentWeek: dateFns.subMonths(this.state.currentWeek, 1)}))
+      .catch(error => console.log(error));
     };
     // Fonction pour afficher les entêtes (=les jours de la semaine) du calendrier
     renderWeek() {
@@ -130,7 +138,7 @@ export default class Calendar extends Component {
           <div className="calendar">
             {this.renderHeader()}
             {this.renderWeek()}
-            <Cells week={dateFns.format(this.state.currentWeek, formatWeek)} year={this.state.currentWeek.getFullYear()} ></Cells>
+            <Cells ArrayWeek={this.state.week} week={dateFns.format(this.state.currentWeek, formatWeek)} year={this.state.currentWeek.getFullYear()} ></Cells>
           </div>
       )
     }

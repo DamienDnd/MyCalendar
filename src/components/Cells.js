@@ -18,14 +18,8 @@ export default class Cells extends Component {
         super(props);
         
         this.state = {
-          week : json
+          week : []
         }
-        console.log(this.state.week);
-        this.normalizeTimeBlocks(this.state.week);
-        /* fetch(`/login/M1/idWeek/${this.props.week}-${this.props.year}`)
-          .then(res => res.json())
-          .then(data => this.setState({week : data}))
-          .catch(error => console.log(error)); */
     }
     
     normalizeTimeBlocks = (appointments) => {
@@ -37,6 +31,7 @@ export default class Cells extends Component {
         appointments.map( function(item,index) {
           let hour = 0;
           let min = 0;
+          // Si l'heure est 830 pour 8h30
           if(item.heure.length === 3) {
             hour = item.heure.substring(0,1);
             min = item.heure.substring(1);
@@ -44,30 +39,31 @@ export default class Cells extends Component {
             hour = item.heure.substring(0,2);
             min = item.heure.substring(2);
           }
-
+          // Si l'heure de départ est 830 alors on affichera 08:30
           let startTime = formatTime(hour,min);
-
+          // On additionne l'heure de début et la durée du cours (ex : 830 + 130 = 960)
           let fin = (parseInt(item.heure) + parseInt(item.duree));
           let endHour = 0;
           let endMin = 0;
-
-          if(item.heure.length === 3) {
+          // Si l'heure de fin est toujours a 3 caractères comme 960
+          if(fin.toString().length === 3) {
             endHour = parseInt(fin.toString().substring(0,1));
             endMin = parseInt(fin.toString().substring(1));
           } else {
             endHour = parseInt(fin.toString().substring(0,2));
             endMin = parseInt(fin.toString().substring(2));
           }
-
+          // Si on a 960 alors les minutes passent à 0 et on rajoute 1h
           if(endMin === 60) {
             endHour = parseInt(endHour) +1;
             endMin = "00";
           }
+          // Si on a plus de 60min : 75 alors on retire 60min, on ajoute 1h et on conserve les 15 minutes
           if(endMin > 60) {
             endHour = parseInt(endHour) +1;
             endMin = endMin - 60;
           }
-
+          // Maintenant on a notre date de fin (ex : 10:00 et pas 09:60)
           let endTime = formatTime(endHour.toString(), endMin.toString());
 
           let blockSpan = 0;
@@ -75,23 +71,23 @@ export default class Cells extends Component {
           let timeString = startTime;
           hour = parseInt(hour);
           min = parseInt(min);
-
-            while (timeString !== endTime) {
-              blockSpan++;
-              min += blockTime;
+          // On boucle tant que la date de début est différente de la date de fin 
+          while (timeString !== endTime) {
+            blockSpan++;
+            min += blockTime;
     
-              if (min >= 60) {
-                min = 0;
-                hour += 1;
-              }
-              timeString = formatTime(hour, min);
+            if (min >= 60) {
+              min = 0;
+              hour += 1;
             }
-            
-            eventBlocks[startTime] = eventBlocks[startTime] || {};
-            eventBlocks[startTime][item.id] = Object.assign({}, item, {
-              blockSpan, startTime, endTime
-            });
-        });
+            timeString = formatTime(hour, min);
+          }
+          
+          eventBlocks[startTime] = eventBlocks[startTime] || {};
+          eventBlocks[startTime][item.id] = Object.assign({}, item, {
+            blockSpan, startTime, endTime
+          });
+        }); // Fin du map
         
         for (let hour = 8; hour < 20; hour++) {
           for (let minutes = 0; minutes < 60; minutes += blockTime) {
@@ -99,14 +95,16 @@ export default class Cells extends Component {
           
             timeBlocks[timeString] = eventBlocks[timeString] || {};
           }
-        }
+        } // fin du double for
         this.timeBlocks = timeBlocks;
-    };
+        return timeBlocks;
+    }; // fin de normalizeTimeBlocks()
     
     render() {
         const rows = [];
-        for (let time in this.timeBlocks) {
-          let block = this.timeBlocks[time];
+        let timeBlocks = this.normalizeTimeBlocks(this.props.ArrayWeek);
+        for (let time in timeBlocks) {
+          let block = timeBlocks[time];
           block = Object.entries(block);
           if(block.length > 0)  {
             block = block.flat();
@@ -151,24 +149,3 @@ export default class Cells extends Component {
         );
     }
 }
-
-const json = [
-  {"date":"2013-9-2","groupes":["M1"],"heure":"1630","profs":[{"NOM":"FISSON","PRENOM":"SYLVAIN"}],"idWeek":"36-2013-mo","duree":"130","salles":["IB119","IB117"],"id":"76d05671-471c-42ee-a39d-3a892c8f9e1c","matiere":"_M1TC7.13 MASTRIALES TD","type_activite":"TD"},
-
-  {"date":"2013-9-2","groupes":["M1"],"heure":"830","idWeek":"36-2013-mo","duree":"130","salles":["IBGRANDAMPHI"],"id":"2c964507-db09-4f8c-9a03-78d2a3014014","matiere":"_PRE-RENTREE","type_activite":"CM"},
-
-  {"date":"2013-9-3","groupes":["M1"],"heure":"1300","profs":[{"NOM":"FISSON","PRENOM":"SYLVAIN"}],"idWeek":"36-2013-tu","duree":"130","salles":["IB119","IB117"],"id":"04ec3867-e7a7-418e-8c93-2d60be27e9bd","matiere":"_M1TC7.13 MASTRIALES TD","type_activite":"TD"},
-
-  {"date":"2013-9-3","groupes":["M1"],"heure":"830","profs":[{"NOM":"FISSON","PRENOM":"SYLVAIN"}],"idWeek":"36-2013-tu","duree":"130","salles":["IB119","IB117"],"id":"aa1d219b-cdde-42d0-82e9-9b58a8a13b01","matiere":"_M1TC7.13 MASTRIALES TD","type_activite":"TD"},
-
-  {"date":"2013-9-3","groupes":["M1"],"heure":"1445","profs":[{"NOM":"FISSON","PRENOM":"SYLVAIN"}],"idWeek":"36-2013-tu","duree":"130","salles":["IB119","IB117"],"id":"3c0569d4-d877-4dd5-b651-227735243ef5","matiere":"_M1TC7.13 MASTRIALES TD","type_activite":"TD"},
-
-  {"date":"2013-9-3","groupes":["M1"],"heure":"1015","profs":[{"NOM":"FISSON","PRENOM":"SYLVAIN"}],"idWeek":"36-2013-tu","duree":"130","salles":["IB119","IB117"],"id":"01bc7731-7ad1-4189-be24-d30946f7030c","matiere":"_M1TC7.13 MASTRIALES TD","type_activite":"TD"},
-
-  {"date":"2013-9-2","groupes":["M1"],"heure":"1015","profs":[{"NOM":"FISSON","PRENOM":"SYLVAIN"}],"idWeek":"36-2013-mo","duree":"130","salles":["IB119","IB117"],"id":"b73148ae-14c8-467f-b82d-1e1e2ffda590","matiere":"_M1TC7.13 MASTRIALES TD","type_activite":"TD"},
-
-  {"date":"2013-9-2","groupes":["M1"],"heure":"1445","profs":[{"NOM":"FISSON","PRENOM":"SYLVAIN"}],"idWeek":"36-2013-mo","duree":"130","salles":["IB119","IB117"],"id":"65880c6c-1db3-4e4f-8e11-8d787b68b369","matiere":"_M1TC7.13 MASTRIALES TD","type_activite":"TD"},
-
-  {"date":"2013-9-2","groupes":["M1"],"heure":"1300","profs":[{"NOM":"FISSON","PRENOM":"SYLVAIN"}],"idWeek":"36-2013-mo","duree":"130","salles":["IB119","IB117"],"id":"b4f5cf82-6b92-4cc3-99bb-3fcc75ba3e54","matiere":"_M1TC7.13 MASTRIALES TD","type_activite":"TD"}
-
-  ];
