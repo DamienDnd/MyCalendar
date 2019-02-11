@@ -229,3 +229,82 @@ header #logo .icon .icon2 {
   margin-left: 1em;
   margin-right: 1em;
 }
+
+.submitButton {
+  top: -40px;
+  border-radius: 2em;
+  padding: 0.8em 0.8em;
+  margin-left: 2em;
+  border: 2px solid var(--main-color);
+  background-color: white;
+  color:var(--main-color);
+  transition-duration: 1s;
+  display: inline-block;
+}
+
+.submitButton:hover {
+  border-radius: 2em;
+  padding: 0.8em 2em;
+  margin-left: 2em;
+  transition-duration: 1s;
+  background-color: var(--main-color);
+  color: white;
+}
+
+.loginForm {
+  padding: 2em 1em;
+  margin: 0em 1em;
+  margin-top: 2em;
+  display: block;
+  position: relative;
+}
+
+.spanEffect {
+  display: inline-block;
+}
+
+.inputEffect {
+  font-size: 16px;
+  font-weight: 700;
+  display: block;
+  position: relative;
+  color: var(--main-color);
+  font-weight: bold;
+  z-index: 2;
+  background: transparent;
+  border:none;
+  border-bottom: 1px solid var(--main-color);
+  font-family: 'Helvetica', sans-serif;
+}
+
+.labelForm {
+  display: block;
+  top:-30px;
+  font-family: 'Helvetica', sans-serif;
+  background: white;
+  position: relative;
+  color: var(--text-color);
+  font-family: 'Helvetica', sans-serif;
+  font-size: 18px;
+  z-index: 1;
+  transition: all 0.3s ease-out;
+  overflow: hidden;
+  text-align: left;
+  left: 10px;
+}
+
+.inputEffect:focus + .labelForm {
+  top: -50px;
+  font-size: 14px;
+  color: var(--text-color-light);
+}
+
+.inputEffect:focus, .inputEffect:valid {
+  outline: none;
+  padding: 0px 10px;
+}
+
+input, label {
+  display: block;
+  position: relative;
+}

@@ -160,14 +160,26 @@ export default class Calendar extends Component {
         if(this.state.error){
             error.push(<div style={{color:"Red"}}>{"login incorrect"}</div>);
         }
-        window.push(<div key="test"><form onSubmit={this.handleSubmit}>
-          <label>
-            Login:
-            <input type="text" name="login" value={this.test} onChange={this.handleChange}/>
-          </label>
-          {error}
-          <input type="submit" value="Connect"/>
-        </form></div>);
+        window.push(
+          <div key="test" className="text-center">
+            <header>
+              <div id="logo">
+                <span className="icon">date_range</span>
+                <span>
+                  My React <b>Calendar</b>
+                </span>
+              </div>
+            </header>
+            <form className="loginForm" onSubmit={this.handleSubmit} autocomplete="off">
+              <div className="spanEffect">
+                <input id="login" className="inputEffect" type="text" name="login" value={this.test} onChange={this.handleChange} required/>
+                <label htmlFor="login" className="labelForm">Login </label>
+                {error}
+              </div>
+              <input className="submitButton" type="submit" value="Connect" />
+            </form>
+          </div>
+        );
       }
       else{
         window.push(<div key="test">
