@@ -293,7 +293,7 @@ header #logo .icon .icon2 {
   left: 10px;
 }
 
-.inputEffect:focus + .labelForm {
+.inputEffect:focus + .labelForm, .inputEffect:valid + .labelForm {
   top: -50px;
   font-size: 14px;
   color: var(--text-color-light);

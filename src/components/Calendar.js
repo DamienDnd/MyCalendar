@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './Calendar.css';
 import dateFns from 'date-fns';
 import frDate from 'date-fns/locale/fr';
 import Cells from './Cells';
